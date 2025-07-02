@@ -13,6 +13,7 @@ return {
         settings = {
           python = {
             analysis = {
+              exclude = { "**/migrations", "**/tests", "**/__pycache__", "**/.venv" },
               typeCheckingMode = "strict",
               diagnosticMode = "workspace", -- mostra problemas em todos os arquivos
               autoSearchPaths = true,
