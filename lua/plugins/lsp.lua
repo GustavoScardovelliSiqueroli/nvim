@@ -13,7 +13,6 @@ return {
         settings = {
           python = {
             analysis = {
-              exclude = { "**/migrations", "**/tests", "**/__pycache__", "**/.venv" },
               typeCheckingMode = "strict",
               diagnosticMode = "workspace", -- mostra problemas em todos os arquivos
               autoSearchPaths = true,
@@ -23,8 +22,29 @@ return {
         },
       })
 
-      lspconfig.ruff_lsp.setup({
+      lspconfig.lua_ls.setup({
         capabilities = capabilities,
+        settings = {
+          Lua = {
+            runtime = {
+              version = "LuaJIT", -- Love2D usa LuaJIT
+            },
+            diagnostics = {
+              globals = { "vim", "love" },
+            },
+            workspace = {
+              library = {
+                [vim.fn.stdpath("config") .. "/love-api"] = true, -- love-api baixado
+                [vim.fn.expand("$VIMRUNTIME/lua")] = true, -- runtime do neovim
+                [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true, -- LSP builtins
+              },
+              checkThirdParty = false,
+            },
+            telemetry = {
+              enable = false,
+            },
+          },
+        },
       })
     end,
   },
