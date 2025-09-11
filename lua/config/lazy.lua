@@ -19,7 +19,7 @@ require("lazy").setup({
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     { import = "lazyvim.plugins.extras.lang.python" },
     { import = "lazyvim.plugins.extras.coding.nvim-cmp" }, -- autocompletar
-    { import = "lazyvim.plugins.extras.ai.codeium" }, -- Codeium
+    -- { import = "lazyvim.plugins.extras.ai.codeium" }, -- Codeium
     { import = "plugins" },
   },
   defaults = {

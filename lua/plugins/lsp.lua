@@ -27,22 +27,18 @@ return {
         settings = {
           Lua = {
             runtime = {
-              version = "LuaJIT", -- Love2D usa LuaJIT
+              version = "LuaJIT",
             },
             diagnostics = {
-              globals = { "vim", "love" },
+              globals = { "love" }, -- pra que o linter não reclame de "love" como global desconhecido
             },
             workspace = {
               library = {
-                [vim.fn.stdpath("config") .. "/love-api"] = true, -- love-api baixado
-                [vim.fn.expand("$VIMRUNTIME/lua")] = true, -- runtime do neovim
-                [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true, -- LSP builtins
+                -- incluir as definições do Love2D
+                -- local onde o plugin love2d.nvim guarda essas definições ou usar o caminho padrão
               },
-              checkThirdParty = false,
             },
-            telemetry = {
-              enable = false,
-            },
+            telemetry = { enable = false },
           },
         },
       })
