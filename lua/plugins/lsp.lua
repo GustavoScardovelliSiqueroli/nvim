@@ -86,6 +86,8 @@ return {
           "json",
         },
       })
+
+      lspconfig.clangd.setup({})
     end,
   },
 }

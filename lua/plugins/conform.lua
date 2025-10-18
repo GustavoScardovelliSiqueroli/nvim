@@ -5,10 +5,7 @@ return {
       vue = { "prettier" },
       javascript = { "prettier" },
       typescript = { "prettier" },
-    },
-    format_on_save = {
-      timeout_ms = 500,
-      lsp_fallback = true,
+      c = { "clang_format" },
     },
   },
 }
