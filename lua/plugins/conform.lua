@@ -5,7 +5,12 @@ return {
       vue = { "prettier" },
       javascript = { "prettier" },
       typescript = { "prettier" },
-      c = { "clang_format" },
+      c = { "clang-format" },
+      cpp = { "clang-format" },
+    },
+    format_on_save = {
+      timeout_ms = 500,
+      lsp_fallback = true,
     },
   },
 }

@@ -6,12 +6,12 @@ return {
 
       vim.diagnostic.config({
         virtual_text = {
-          prefix = "●", -- símbolo antes da mensagem
+          prefix = "●",
         },
-        signs = true, -- mostra ícones na coluna da esquerda
-        underline = true, -- sublinha o erro no código
-        update_in_insert = false, -- não mostra erro enquanto digita
-        severity_sort = true, -- ordena por severidade
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+        severity_sort = true,
       })
       local signs =
         { Error = " ", Warn = " ", Hint = " ", Info = " " }
@@ -20,24 +20,27 @@ return {
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
       end
 
-      -- Ignorar diagnósticos em certas pastas
+      local default_handler =
+        vim.lsp.handlers["textDocument/publishDiagnostics"]
+
       vim.lsp.handlers["textDocument/publishDiagnostics"] = function(
-        _,
+        err,
         result,
         ctx,
         config
       )
+        if not result or not result.uri then
+          return
+        end
         local ignored_dirs = { "tests", "node_modules" }
-        local uri = result.uri or ""
         for _, dir in ipairs(ignored_dirs) do
-          if uri:find(dir) then
-            return -- não publica diagnósticos para essa pasta
+          if result.uri:find(dir) then
+            return
           end
         end
-        vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+        default_handler(err, result, ctx, config)
       end
 
-      -- Corrigir encoding e ativar diagnósticos globais
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.offsetEncoding = { "utf-8" }
 
@@ -47,7 +50,7 @@ return {
           python = {
             analysis = {
               typeCheckingMode = "strict",
-              diagnosticMode = "workspace", -- mostra problemas em todos os arquivos
+              diagnosticMode = "workspace",
               autoSearchPaths = true,
               useLibraryCodeForTypes = true,
             },
@@ -63,13 +66,7 @@ return {
               version = "LuaJIT",
             },
             diagnostics = {
-              globals = { "love" }, -- pra que o linter não reclame de "love" como global desconhecido
-            },
-            workspace = {
-              library = {
-                -- incluir as definições do Love2D
-                -- local onde o plugin love2d.nvim guarda essas definições ou usar o caminho padrão
-              },
+              globals = { "love" },
             },
             telemetry = { enable = false },
           },
@@ -86,8 +83,10 @@ return {
           "json",
         },
       })
-
-      lspconfig.clangd.setup({})
+      lspconfig.clangd.setup({
+        capabilities = capabilities,
+        filetypes = { "c", "cpp", "objc", "objcpp" },
+      })
     end,
   },
 }

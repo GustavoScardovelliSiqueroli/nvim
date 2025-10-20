@@ -14,6 +14,8 @@ return {
           "html",
           "css",
           "vue",
+          "c",
+          "cpp",
         },
         sync_install = false,
         auto_install = true,
