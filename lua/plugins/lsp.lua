@@ -74,6 +74,7 @@ return {
       })
 
       lspconfig.volar.setup({
+        capabilities = capabilities,
         filetypes = {
           "typescript",
           "javascript",

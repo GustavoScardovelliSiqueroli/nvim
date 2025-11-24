@@ -13,7 +13,7 @@ return {
         },
       },
     })
-    vim.cmd("colorscheme carbonfox") -- ou "nightfox" | "carbonfox" #7aa2f7
+    vim.cmd("colorscheme carbonfox") -- nightfox" | "carbonfox" #7aa2f7
     vim.cmd([[
       hi CursorLine guibg=#2a3d56 gui=NONE
       hi Visual guibg=#4B76C8 guifg=#7aa2f7
@@ -35,5 +35,29 @@ return {
 --     })
 --     -- Enable theme
 --     require("onedark").load()
+--   end,
+-- }
+--
+-- return {
+--   { "morhetz/gruvbox" }, -- o plugin
+--   {
+--     "LazyVim/LazyVim",
+--     opts = {
+--       colorscheme = "gruvbox",
+--     },
+--   },
+-- }
+--
+-- return {
+--   "projekt0n/github-nvim-theme",
+--   name = "github-theme",
+--   lazy = false, -- make sure we load this during startup if it is your main colorscheme
+--   priority = 1000, -- make sure to load this before all the other start plugins
+--   config = function()
+--     require("github-theme").setup({
+--       -- ...
+--     })
+--
+--     vim.cmd("colorscheme github_dark_tritanopia")
 --   end,
 -- }
