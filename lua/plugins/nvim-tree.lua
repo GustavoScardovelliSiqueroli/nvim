@@ -19,6 +19,9 @@ return {
       filters = {
         dotfiles = false,
         git_ignored = true,
+        custom = {
+          "\\.gd\\.uid$",
+        },
       },
     })
   end,

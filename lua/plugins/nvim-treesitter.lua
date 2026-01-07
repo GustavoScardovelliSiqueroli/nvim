@@ -37,6 +37,7 @@ return {
       "c",
       "cpp",
       "yaml",
+      "gdscript",
     },
   },
 }

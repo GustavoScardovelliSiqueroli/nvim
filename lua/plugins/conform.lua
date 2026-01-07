@@ -7,6 +7,14 @@ return {
       typescript = { "prettier" },
       c = { "clang-format" },
       cpp = { "clang-format" },
+      gdscript = { "gdscriptformatter", stop_after_first = true },
+    },
+    formatters = {
+      gdscriptformatter = {
+        command = "gdscript-formatter",
+        args = { "--safe" },
+        stdin = true,
+      },
     },
     format_on_save = {
       timeout_ms = 500,
