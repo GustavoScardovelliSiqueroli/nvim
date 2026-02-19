@@ -1,5 +1,4 @@
 return {
-  -- LINTER
   {
     "mfussenegger/nvim-lint",
     opts = {

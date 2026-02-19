@@ -5,11 +5,17 @@ return {
   config = function()
     require("nightfox").setup({
       options = {
-        transparent = true,
+        transparent = false,
         styles = {
           comments = "italic",
           keywords = "bold",
           types = "italic,bold",
+        },
+      },
+      palettes = {
+        carbonfox = {
+          bg1 = "#1b1f26",
+          -- bg2 = "#15181e",
         },
       },
     })

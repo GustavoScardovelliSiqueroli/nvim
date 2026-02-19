@@ -8,6 +8,7 @@ return {
       c = { "clang-format" },
       cpp = { "clang-format" },
       gdscript = { "gdscriptformatter", stop_after_first = true },
+      python = { "isort", "ruff_format" },
     },
     formatters = {
       gdscriptformatter = {

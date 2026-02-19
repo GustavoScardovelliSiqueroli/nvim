@@ -17,3 +17,12 @@ vim.keymap.set(
   ":NvimTreeToggle<CR>",
   { noremap = true, silent = true, desc = "Toggle Explorer" }
 )
+
+vim.keymap.set("n", "<C-/>", function()
+  require("snacks").terminal(nil, {
+    win = {
+      position = "right",
+      width = 80,
+    },
+  })
+end, { desc = "Terminal (Root Dir) Vertical" })
