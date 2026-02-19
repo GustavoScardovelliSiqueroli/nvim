@@ -1,7 +1,14 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  local out = vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "--branch=stable",
+    lazyrepo,
+    lazypath,
+  })
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
@@ -40,6 +47,35 @@ require("lazy").setup({
         "tutor",
         "zipPlugin",
       },
+    },
+  },
+})
+
+local cmp = require("cmp")
+
+local function underscore_cmp(entry1, entry2)
+  local _, c1 = entry1.completion_item.label:find("^_+")
+  local _, c2 = entry2.completion_item.label:find("^_+")
+
+  c1 = c1 or 0
+  c2 = c2 or 0
+
+  if c1 ~= c2 then
+    return c1 < c2
+  end
+end
+
+cmp.setup({
+  sorting = {
+    comparators = {
+      underscore_cmp,
+      cmp.config.compare.score,
+      cmp.config.compare.offset,
+      cmp.config.compare.exact,
+      cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
     },
   },
 })
