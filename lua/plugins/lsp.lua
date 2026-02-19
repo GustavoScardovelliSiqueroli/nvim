@@ -41,11 +41,7 @@ return {
         default_handler(err, result, ctx, config)
       end
 
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities.offsetEncoding = { "utf-8" }
-
       lspconfig.pyright.setup({
-        capabilities = capabilities,
         settings = {
           python = {
             analysis = {
@@ -59,7 +55,6 @@ return {
       })
 
       lspconfig.lua_ls.setup({
-        capabilities = capabilities,
         settings = {
           Lua = {
             runtime = {
@@ -74,7 +69,6 @@ return {
       })
 
       lspconfig.volar.setup({
-        capabilities = capabilities,
         filetypes = {
           "typescript",
           "javascript",
@@ -86,13 +80,10 @@ return {
       })
 
       lspconfig.clangd.setup({
-        capabilities = capabilities,
         filetypes = { "c", "cpp", "objc", "objcpp" },
       })
 
-      lspconfig.gdscript.setup({
-        capabilities = capabilities,
-      })
+      lspconfig.gdscript.setup({})
     end,
   },
 }
