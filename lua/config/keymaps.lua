@@ -1,8 +1,8 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
-vim.keymap.set("n", "<Tab>", ":bnext<CR>")
-vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>")
+vim.keymap.set("n", "<Tab>", ":bnext<CR>", { silent = true })
+vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", { silent = true })
 vim.keymap.set("n", "<A-w>", ":bd<CR>")
 vim.keymap.set("n", "<A-s>", ":w<CR>")
 vim.keymap.set(
@@ -26,3 +26,9 @@ vim.keymap.set("n", "<C-/>", function()
     },
   })
 end, { desc = "Terminal (Root Dir) Vertical" })
+
+vim.keymap.set({ "n", "v" }, "<C-a>", "^")
+vim.keymap.set({ "n", "v" }, "<C-e>", "$")
+vim.keymap.set("i", "<C-a>", "<C-o>^")
+vim.keymap.set("i", "<C-e>", "<C-o>$")
+vim.keymap.set("i", "<C-d>", "<Del>")
