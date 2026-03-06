@@ -55,13 +55,22 @@ return {
       })
 
       lspconfig.lua_ls.setup({
+        on_attach = function(client, bufnr)
+          local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
+          for _, c in ipairs(clients) do
+            if c.name == "lua_ls" and c.id ~= client.id then
+              client.stop()
+              return
+            end
+          end
+        end,
         settings = {
           Lua = {
             runtime = {
               version = "LuaJIT",
             },
             diagnostics = {
-              globals = { "love" },
+              globals = { "love", "vim" },
             },
             telemetry = { enable = false },
           },
