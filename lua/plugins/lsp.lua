@@ -93,6 +93,12 @@ return {
       })
 
       lspconfig.gdscript.setup({})
+
+      lspconfig.emmet_language_server.setup({})
+
+      lspconfig.cssls.setup({})
+
+      lspconfig.html.setup({})
     end,
   },
 }

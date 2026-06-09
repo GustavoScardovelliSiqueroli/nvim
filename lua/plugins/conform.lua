@@ -5,6 +5,7 @@ return {
       vue = { "prettier" },
       javascript = { "prettier" },
       typescript = { "prettier" },
+      html = { "prettier" },
       c = { "clang-format" },
       cpp = { "clang-format" },
       gdscript = { "gdscriptformatter", stop_after_first = true },
