@@ -37,3 +37,8 @@ vim.keymap.set("i", "<C-l>", "<C-o>l")
 vim.keymap.set("i", "<C-h>", "<C-o>h")
 vim.keymap.set("i", "<C-k>", "<C-o>k")
 vim.keymap.set("i", "<C-j>", "<C-o>j")
+
+local wk = require("which-key")
+wk.add({
+  { "<leader>p", group = "Python" },
+})
